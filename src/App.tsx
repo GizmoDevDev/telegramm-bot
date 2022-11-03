@@ -2,22 +2,10 @@ import React, { useState } from 'react';
 import { Route, Router, Text, ButtonGroup, Button, useText, Image } from '@urban-bot/core';
 import fs from 'fs';
 import logo from './assets/logo.png';
+import {Main} from "./pages/Main";
+import {Interview} from "./pages/Interview";
 
 const file = fs.readFileSync(logo);
-
-function Echo() {
-    const [text, setText] = useState('Say something');
-
-    useText(({ text }) => {
-        setText(text);
-    });
-
-    return (
-        <Text>
-            <i>{text}</i>
-        </Text>
-    );
-}
 
 function Logo() {
     const [title, setTitle] = useState('Urban Bot');
@@ -42,13 +30,12 @@ function Logo() {
 export function App() {
     return (
         <>
-            <Text>Welcome to Urban Bot! Type /echo or /logo.</Text>
             <Router>
-                <Route path="/echo">
-                    <Echo />
+                <Route path="/">
+                  <Main />
                 </Route>
-                <Route path="/logo">
-                    <Logo />
+                <Route path="/:id">
+                    <Interview />
                 </Route>
             </Router>
         </>
